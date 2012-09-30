@@ -1,5 +1,5 @@
 {
-  "name": "LessMixins",
+  "name": "less-mixins",
   "version": "0.0.0",
   "main": "mixins.less",
   "dependencies": {}
