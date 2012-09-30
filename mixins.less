@@ -1,10 +1,52 @@
 
 
+.boxShadow( @offsetX: 3px, 
+            @offsetY: 3px, 
+            @blurRadius: 2px, 
+            @spreadRadius: 0px, 
+            @color: rgb( 40, 40, 40 ) ) {
+    
+    // Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
+    -webkit-box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; 
+            // Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5
+            box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; 
+}
+
+.borderRadius( ) {
+
+
+    .clip();
+} 
+
+.linearGradient( @fallbackColor, @startColor, @stopColor ) {
+
+    // Browsers with no linear-gradient support
+    background-color: @fallbackColor;
+    // Safari 4+, Chrome
+    background-image: -webkit-gradient( linear, left top, left bottom, from( @startColor ), to( @stopColor ) ); 
+    // Chrome 10+, Safari 5.1+, iOS 5+
+    background-image: -webkit-linear-gradient( top, @startColor, @stopColor ); 
+    // Firefox 3.6-15
+    background-image:    -moz-linear-gradient( top, @startColor, @stopColor ); 
+    // Opera 11.10-12.00
+    background-image:      -o-linear-gradient( top, @startColor, @stopColor ); 
+    // Firefox 16+, IE10, Opera 12.50+
+    background-image:         linear-gradient( to bottom, @startColor, @stopColor ); 
+}
+
+
+
 .rounded( @radius: 2px ) {
+
     -webkit-border-radius: @radius;
        -moz-border-radius: @radius;
             border-radius: @radius;
-  
+
+    .clip();  
+}
+
+.clip() {
+
     -webkit-background-clip: padding-box; 
        -moz-background-clip: padding; 
             background-clip: padding-box; 
