@@ -1,4 +1,24 @@
+.backgroundClip( @boxModel: padding-box ) {
 
+    -webkit-background-clip: @boxModel; 
+       -moz-background-clip: @boxModel; 
+            background-clip: @boxModel; 
+}
+
+// .backgroundOrigin( @position: content-box ) {}
+
+// .backgroundSize () {}
+
+.borderRadius( @firstRadius, @secondRadius ) {
+
+    -webkit-border-radius: @firstRadius;
+       -moz-border-radius: @firstRadius;
+            border-radius: @firstRadius;
+
+    .backgroundClip();
+}
+
+// .box(){}
 
 .boxShadow( @offsetX: 3px, 
             @offsetY: 3px, 
@@ -12,11 +32,38 @@
             box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; 
 }
 
-.borderRadius( ) {
-
-
-    .clip();
+.boxSizing( @boxModel: border-box ) {
+    
+    -moz-box-sizing: @boxModel;
+         box-sizing: @boxModel;
 } 
+
+/**
+ * @param {string} fontName
+ * @param {string} fontFileName
+ * @param {keyword|int} fontWeight
+ * @param {keyword} fontStyle
+ */
+.fontFace( @fontName, @fontFileName, @fontWeight: normal, @fontStyle: normal ) {
+    
+    font-family: @fontName;
+    src: url('@{fontFileName}-webfont.eot');
+    src: url('@{fontFileName}-webfont.eot?#iefix') format('embedded-opentype'),
+         url('@{fontFileName}-webfont.woff') format('woff'),
+         url('@{fontFileName}-webfont.ttf') format('truetype'),
+         url('@{fontFileName}-webfont.svg#@{fontFileName}') format('svg');
+    font-weight: @fontWeight;
+    font-style: @fontStyle;
+}
+
+
+
+.fontFace ( @fontName, @fontFileName ){
+  font-family: @fontName;
+  src: url('GraublauWeb.eot?') format('eot'), url('GraublauWeb.woff') format('woff'), url('GraublauWeb.ttf') format('truetype');
+}
+
+
 
 .linearGradient( @fallbackColor, @startColor, @stopColor ) {
 
@@ -36,18 +83,10 @@
 
 
 
+
 .rounded( @radius: 2px ) {
 
-    -webkit-border-radius: @radius;
-       -moz-border-radius: @radius;
-            border-radius: @radius;
-
-    .clip();  
+    .borderRadius( @radius );
 }
 
-.clip() {
 
-    -webkit-background-clip: padding-box; 
-       -moz-background-clip: padding; 
-            background-clip: padding-box; 
-}
