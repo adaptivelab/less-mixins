@@ -1,3 +1,9 @@
+/*******************************************************************************
+
+    Mixins for cross browser CSS3 support  
+
+*******************************************************************************/
+
 .backgroundClip( @boxModel: padding-box ) {
 
     -webkit-background-clip: @boxModel; 
@@ -20,18 +26,21 @@
 
 // .box(){}
 
-.boxShadow( @offsetX: 3px, 
-            @offsetY: 3px, 
-            @blurRadius: 2px, 
-            @spreadRadius: 0px, 
-            @color: rgb( 40, 40, 40 ) ) {
+.boxShadow( @offsetX:       3px, 
+            @offsetY:       3px, 
+            @blurRadius:    2px, 
+            @spreadRadius:  0px, 
+            @color:         rgb( 40, 40, 40 ) ) {
     
-    // Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
-    -webkit-box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; 
-            // Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5
-            box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; 
+    -webkit-box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; // Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
+            box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; // Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5
 }
 
+/**
+ * Sets the box-sizing method for an element
+ * 
+ * @param {keyword} border-box
+ */
 .boxSizing( @boxModel: border-box ) {
     
     -moz-box-sizing: @boxModel;
@@ -39,54 +48,53 @@
 } 
 
 /**
- * @param {string} fontName
- * @param {string} fontFileName
+ * Creates a fontface declaration for the given font
+ *
+ * Uses the synatx recommended by Font Spring: 
+ * http://www.fontspring.com/blog/fixing-ie9-font-face-problems
+ *
+ * Use http://www.fontsquirrel.com/fontface/generator to generate the required 
+ * font kits
+ * 
+ * @param {string}      fontName
+ * @param {string}      fontFileName
  * @param {keyword|int} fontWeight
- * @param {keyword} fontStyle
+ * @param {keyword}     fontStyle
  */
 .fontFace( @fontName, @fontFileName, @fontWeight: normal, @fontStyle: normal ) {
     
     font-family: @fontName;
-    src: url('@{fontFileName}-webfont.eot');
-    src: url('@{fontFileName}-webfont.eot?#iefix') format('embedded-opentype'),
-         url('@{fontFileName}-webfont.woff') format('woff'),
-         url('@{fontFileName}-webfont.ttf') format('truetype'),
-         url('@{fontFileName}-webfont.svg#@{fontFileName}') format('svg');
+    src: url('@{fontFileName}-webfont.eot'); // IE9 Compat Modes
+    src: url('@{fontFileName}-webfont.eot?#iefix') format('embedded-opentype'), // IE6-8
+         url('@{fontFileName}-webfont.woff') format('woff'), // Modern browsers 
+         url('@{fontFileName}-webfont.ttf') format('truetype'), // Safari, Android, iOS
+         url('@{fontFileName}-webfont.svg#@{fontFileName}') format('svg'); // Legacy iOS
     font-weight: @fontWeight;
     font-style: @fontStyle;
 }
 
-
-
-.fontFace ( @fontName, @fontFileName ){
-  font-family: @fontName;
-  src: url('GraublauWeb.eot?') format('eot'), url('GraublauWeb.woff') format('woff'), url('GraublauWeb.ttf') format('truetype');
-}
-
-
-
+/**
+ * @param {color} fallbackColor
+ * @param {color} startColor
+ * @param {color} stopColor
+ */
 .linearGradient( @fallbackColor, @startColor, @stopColor ) {
 
-    // Browsers with no linear-gradient support
-    background-color: @fallbackColor;
-    // Safari 4+, Chrome
-    background-image: -webkit-gradient( linear, left top, left bottom, from( @startColor ), to( @stopColor ) ); 
-    // Chrome 10+, Safari 5.1+, iOS 5+
-    background-image: -webkit-linear-gradient( top, @startColor, @stopColor ); 
-    // Firefox 3.6-15
-    background-image:    -moz-linear-gradient( top, @startColor, @stopColor ); 
-    // Opera 11.10-12.00
-    background-image:      -o-linear-gradient( top, @startColor, @stopColor ); 
-    // Firefox 16+, IE10, Opera 12.50+
-    background-image:         linear-gradient( to bottom, @startColor, @stopColor ); 
+    background-color: @fallbackColor; // Browsers with no linear-gradient support
+    background-image: -webkit-gradient( linear, left top, left bottom, from( @startColor ), to( @stopColor ) ); // Safari 4+, Chrome
+    background-image: -webkit-linear-gradient( top, @startColor, @stopColor ); // Chrome 10+, Safari 5.1+, iOS 5+
+    background-image:    -moz-linear-gradient( top, @startColor, @stopColor ); // Firefox 3.6-15
+    background-image:      -o-linear-gradient( top, @startColor, @stopColor ); // Opera 11.10-12.00
+    background-image:         linear-gradient( to bottom, @startColor, @stopColor ); // Firefox 16+, IE10, Opera 12.50+
 }
 
+/*******************************************************************************
 
+    Mixins for common CSS3 styles 
 
+*******************************************************************************/
 
 .rounded( @radius: 2px ) {
 
     .borderRadius( @radius );
 }
-
-
