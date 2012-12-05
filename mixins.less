@@ -1,14 +1,14 @@
 /*******************************************************************************
 
-    Mixins for cross browser CSS3 support  
+    Mixins for cross browser CSS3 support
 
 *******************************************************************************/
 
 .backgroundClip( @boxModel: padding-box ) {
 
-    -webkit-background-clip: @boxModel; 
-       -moz-background-clip: @boxModel; 
-            background-clip: @boxModel; 
+    -webkit-background-clip: @boxModel;
+       -moz-background-clip: @boxModel;
+            background-clip: @boxModel;
 }
 
 // .backgroundOrigin( @position: content-box ) {}
@@ -26,47 +26,47 @@
 
 // .box(){}
 
-.boxShadow( @offsetX:       3px, 
-            @offsetY:       3px, 
-            @blurRadius:    2px, 
-            @spreadRadius:  0px, 
+.boxShadow( @offsetX:       3px,
+            @offsetY:       3px,
+            @blurRadius:    2px,
+            @spreadRadius:  0px,
             @color:         rgb( 40, 40, 40 ) ) {
-    
+
     -webkit-box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; // Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
             box-shadow: @offsetX @offsetY @blurRadius @spreadRadius @color; // Opera 10.5, IE9+, Firefox 4+, Chrome 6+, iOS 5
 }
 
 /**
  * Sets the box-sizing method for an element
- * 
+ *
  * @param {keyword} border-box
  */
 .boxSizing( @boxModel: border-box ) {
-    
+
     -moz-box-sizing: @boxModel;
          box-sizing: @boxModel;
-} 
+}
 
 /**
  * Creates a fontface declaration for the given font
  *
- * Uses the synatx recommended by Font Spring: 
+ * Uses the synatx recommended by Font Spring:
  * http://www.fontspring.com/blog/fixing-ie9-font-face-problems
  *
- * Use http://www.fontsquirrel.com/fontface/generator to generate the required 
+ * Use http://www.fontsquirrel.com/fontface/generator to generate the required
  * font kits
- * 
+ *
  * @param {string}      fontName
  * @param {string}      fontFileName
  * @param {keyword|int} fontWeight
  * @param {keyword}     fontStyle
  */
 .fontFace( @fontName, @fontFileName, @fontWeight: normal, @fontStyle: normal ) {
-    
+
     font-family: @fontName;
     src: url('@{fontFileName}-webfont.eot'); // IE9 Compat Modes
     src: url('@{fontFileName}-webfont.eot?#iefix') format('embedded-opentype'), // IE6-8
-         url('@{fontFileName}-webfont.woff') format('woff'), // Modern browsers 
+         url('@{fontFileName}-webfont.woff') format('woff'), // Modern browsers
          url('@{fontFileName}-webfont.ttf') format('truetype'), // Safari, Android, iOS
          url('@{fontFileName}-webfont.svg#@{fontFileName}') format('svg'); // Legacy iOS
     font-weight: @fontWeight;
@@ -90,11 +90,11 @@
 
 /*******************************************************************************
 
-    Mixins for common CSS3 styles 
+    Mixins for common CSS3 styles
 
 *******************************************************************************/
 
 .rounded( @radius: 2px ) {
 
-    .borderRadius( @radius );
+    .borderRadius( @radius, @radius );
 }
