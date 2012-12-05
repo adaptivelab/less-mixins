@@ -1,6 +1,6 @@
 {
     "name": "less-mixins",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "mixins.less",
     "dependencies": {}
 }
