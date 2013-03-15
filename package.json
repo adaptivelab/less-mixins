@@ -1,0 +1,9 @@
+{
+  "name": "CavendishLess",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt-contrib-less": "~0.5.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.3.1"
+  }
+}
