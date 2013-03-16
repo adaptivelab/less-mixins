@@ -1,9 +1,13 @@
-@import '../../src/mixins';
-@import '../../src/colours';
+@import '../../src/mixins/mixins';
+@import '../../src/themes/subtle/main';
+
+p {
+    color: @color-text-body;
+}
 
 .btn {
     .rounded( 5px );
-    background: @blue;
+    background: @color-highlight-primary;
     color: @white;
     padding: 2em;
 }

@@ -1,0 +1,19 @@
+@import 'mixins';
+
+.basicButton( @color, @backgroundColor, @borderColor, @borderRadius ) {
+
+    .rounded();
+    .linearGradient(
+        @backgroundColor,
+        lighten( @backgroundColor, 5% ),
+        darken( @backGroundColor, 5% )
+    );
+
+    &:hover{
+        .linearGradient(
+            @backgroundColor,
+            lighten( @backgroundColor, 5% ),
+            darken( @backGroundColor, 5% )
+        );
+    }
+}
